@@ -4,10 +4,7 @@
 
 package org.yourcompany.yourproject;
 
-import org.yourcompany.yourproject.models.Task;
-import org.yourcompany.yourproject.models.User;
-import org.yourcompany.yourproject.services.DatabaseAccess;
-import org.yourcompany.yourproject.services.DatabaseSeeder;
+import org.yourcompany.yourproject.server.Server;
 
 /**
  *
@@ -16,23 +13,62 @@ import org.yourcompany.yourproject.services.DatabaseSeeder;
 public class Tp_java {
     public static void main(String[] args) {
 
-        DatabaseAccess db = DatabaseAccess.getInstance();
+        Server server = new Server(8080);
+        server.start();
 
-        new DatabaseSeeder().seed();
+        // int port = 8080;
+        // System.out.println("Serveur démarré sur le port " + port);
 
-        System.out.println("Utilisateurs :");
-        for (User u : db.getUsers()) {
-            System.out.println(u.getId() + " - " + u.getFirstName());
-        }
-        System.out.println("Tâches :");
-        for (Task t : db.getTasks()) {
-            System.out.println(t.getId() + " - " + t.getTitle());
-        }
+        // try (ServerSocket serverSocket = new ServerSocket(port)) {
+        //     while (true) {
+                
+        //         Socket clientSocket = serverSocket.accept();
+        //         System.out.println("Nouvelle connexion : " + clientSocket.getInetAddress());
 
-        System.out.println("Description :");
-        for (Task t : db.getTasks()) {
-            System.out.println(t.getId() + " - " + t.getDescription());
-        }
+        //         BufferedReader in = new BufferedReader(
+        //             new InputStreamReader(clientSocket.getInputStream(), "UTF-8")
+        //         );
+
+        //         String line;
+        //         StringBuilder request = new StringBuilder();
+        //         while ((line = in.readLine()) != null && !line.isEmpty()) {
+        //             request.append(line).append("\n");
+        //         }
+        //         System.out.println("Requête reçue :\n" + request);
+
+        //         PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
+        //         out.print("HTTP/1.1 200 OK\r\n");
+        //         out.print("Content-Type: text/html\r\n");
+        //         out.print("Content-Length: 12\r\n");
+        //         out.print("\r\n");
+        //         out.print("<html><body><h1>Hello world!</h1></body></html>");
+
+        //         out.flush();
+
+        //         // Ferme la connexion
+        //         clientSocket.close();
+        //     }
+        // } catch (IOException e) {
+        //     System.err.println("Erreur serveur : " + e.getMessage());
+        // }
+
+        // DatabaseAccess db = DatabaseAccess.getInstance();
+
+        // new DatabaseSeeder().seed();
+
+        // System.out.println("Utilisateurs :");
+        // for (User u : db.getUsers()) {
+        //     System.out.println(u.getId() + " - " + u.getFirstName());
+        // }
+        // System.out.println("Tâches :");
+        // for (Task t : db.getTasks()) {
+        //     System.out.println(t.getId() + " - " + t.getTitle());
+        // }
+
+        // System.out.println("Description :");
+        // for (Task t : db.getTasks()) {
+        //     System.out.println(t.getId() + " - " + t.getDescription());
+        // }
         // System.out.println("What is your name ?");
         // Scanner scanner = new Scanner(System.in);
         // String name = scanner.nextLine();

@@ -1,22 +1,29 @@
 package org.yourcompany.yourproject.models;
-import java.util.UUID;
 
 public class Task {
-    private final String id;
+    private static int counter;
+    private final int id;
     private String title;
     private String description;
     private boolean done;
     private User user;
 
+    static {
+        counter = 1;
+    }
+
+    {
+        id = counter++;
+    }
+
     public Task(String title, String description, User user) {
-        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.done = false;
         this.user = user;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

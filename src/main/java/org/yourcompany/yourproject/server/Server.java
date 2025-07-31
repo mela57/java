@@ -21,8 +21,10 @@ public class Server {
         // Init de base
         users.add("Mel");
         users.add("Greg");
+        users.add("Laura");
         tasks.add("Cours de Java");
         tasks.add("Rendre TP serveur");
+        tasks.add("Faire les couillions !");
     }
 
     public void start() {
@@ -50,9 +52,18 @@ public class Server {
                 while ((line = in.readLine()) != null && !line.isEmpty()) {}
 
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
+                String hello = "<html><body><h1>Hello world!</h1></body></html>";
 
                 switch (url) {
-                    case "/users" ->                         {
+                    case "/","" -> {
+                        out.print("HTTP/1.1 200 OK\r\n");
+                        out.print("Content-Type: text/html\r\n");
+                        out.print("Content-Length: " + hello.length() + "\r\n");
+                        out.print("\r\n");
+                        out.print(hello);
+                        break;
+                        }
+                    case "/users" -> {
                             String responseBody = String.join("\n", users);
                             out.print("HTTP/1.1 200 OK\r\n");
                             out.print("Content-Type: text/plain\r\n");
@@ -60,7 +71,7 @@ public class Server {
                             out.print("\r\n");
                             out.print(responseBody);
                         }
-                    case "/tasks" ->                         {
+                    case "/tasks" -> {
                             String responseBody = String.join("\n", tasks);
                             out.print("HTTP/1.1 200 OK\r\n");
                             out.print("Content-Type: text/plain\r\n");

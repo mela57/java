@@ -9,4 +9,13 @@
         <maven.compiler.release>24</maven.compiler.release>
         <exec.mainClass>org.yourcompany.yourproject.Tp_java</exec.mainClass>
     </properties>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>2.3.232</version>
+            </dependency>
+        </dependencies>
+
 </project>

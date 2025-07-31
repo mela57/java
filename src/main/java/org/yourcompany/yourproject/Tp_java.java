@@ -4,17 +4,26 @@
 
 package org.yourcompany.yourproject;
 
+import java.sql.SQLException;
+
 import org.yourcompany.yourproject.server.Server;
+import org.yourcompany.yourproject.services.DatabaseAccess;
+import org.yourcompany.yourproject.services.DatabaseSeeder;
 
 /**
  *
  * @author melanie
  */
 public class Tp_java {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
+        DatabaseAccess.getInstance();
+        org.h2.tools.Server server1 = org.h2.tools.Server.createWebServer().start();
         Server server = new Server(8080);
+        new DatabaseSeeder().seed();
         server.start();
+
+        
 
         // int port = 8080;
         // System.out.println("Serveur démarré sur le port " + port);
